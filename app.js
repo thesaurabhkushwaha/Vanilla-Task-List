@@ -96,8 +96,7 @@ function storeTaskInLocalStorage(task){
 function removeTask(e){
     // Remove from DOM
     if(e.target.parentElement.classList.contains('delete-item')){
-        if(confirm("Are you sure?"))
-            e.target.parentElement.parentElement.remove();
+        e.target.parentElement.parentElement.remove();
     }
 
     // Remove from local storage
@@ -123,11 +122,13 @@ function removeTaskFromLocalStorage(taskItem){
 
 // Clear task list
 function clearTasks(){
-    while(taskList.firstChild)
+    if(confirm("Are you sure?")){
+        while(taskList.firstChild)
         taskList.removeChild(taskList.firstChild);
 
     // Delete all tasks from local storage
     localStorage.clear();
+    }
 }
 
 // Filter tasks
